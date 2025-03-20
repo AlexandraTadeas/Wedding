@@ -33,7 +33,7 @@
             }
 
             let { data, error } = await supabase
-                .from("guests")
+                .from("guests_sql")
                 .select("table_number")
                 .ilike("name", name);  // Hľadanie mena bez rozlíšenia veľkosti písmen
 
