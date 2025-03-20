@@ -18,6 +18,7 @@
     <button onclick="findTable()">Nájsť číslo stola</button>
 
     <h3 id="result"></h3>
+    <label id="tableLabel" style="font-size: 18px; font-weight: bold; color: pink;"></label>
 
     <script>
         const supabaseUrl = "https://kedxejzmxdpnjgekhqiz.supabase.co"; // Sem vlož URL Supabase projektu
@@ -27,8 +28,14 @@
 
         async function findTable() {
             let name = document.getElementById("nameInput").value.trim();
+            let resultElement = document.getElementById("result");
+            let tableLabel = document.getelementById("tableLabel");
+
+            resultElement.innerText = "";
+            tableLabel.innerText = "";
+            
             if (!name) {
-                document.getElementById("result").innerText = "Zadajte svoje meno!";
+                resultElement.innerText = "Zadajte svoje meno!";
                 return;
             }
 
@@ -37,13 +44,19 @@
                 .select("table_number")
                 .ilike("name", name);  // Hľadanie mena bez rozlíšenia veľkosti písmen
 
-            if (error || !data.length) {
-                document.getElementById("result").innerText = "Meno nenájdené.";
+            if (error) {
+                resultElement.innerText = "Chyba pri načítaní údajov.";
+                console.error("Supabase error:", error);
+                return;
+            } 
+
+            if (!data.length) {
+                resultElement.innerText = "Meno nenájdené.";
             } else {
-                document.getElementById("result").innerText = `Vaše číslo stola je: ${data[0].table_number}`;
+                resultElement.innerText = "Vaše číslo stola:";
+                tableLabel.innerText = `Stôl č. ${data[0].table_number}`;
             }
         }
     </script>
-
 </body>
 </html>
