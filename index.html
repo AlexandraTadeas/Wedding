@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zisti svoje miesto</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input { padding: 10px; margin: 10px; width: 200px; }
+        button { padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h2>Zadaj svoje meno</h2>
+    <input type="text" id="nameInput" placeholder="Zadaj meno">
+    <button onclick="findTable()">Nájsť číslo stola</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        const supabaseUrl = "TVOJE_SUPABASE_URL"; // Sem vlož URL Supabase projektu
+        const supabaseKey = "TVOJ_ANON_KEY"; // Sem vlož ANON key z API sekcie
+
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function findTable() {
+            let name = document.getElementById("nameInput").value.trim();
+            if (!name) {
+                document.getElementById("result").innerText = "Zadajte svoje meno!";
+                return;
+            }
+
+            let { data, error } = await supabase
+                .from("guests")
+                .select("table_number")
+                .ilike("name", name);  // Hľadanie mena bez rozlíšenia veľkosti písmen
+
+            if (error || !data.length) {
+                document.getElementById("result").innerText = "Meno nenájdené.";
+            } else {
+                document.getElementById("result").innerText = `Vaše číslo stola je: ${data[0].table_number}`;
+            }
+        }
+    </script>
+
+</body>
+</html>
