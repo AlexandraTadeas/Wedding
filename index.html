@@ -116,28 +116,30 @@
         });
 
         async function uploadFile(event) {
-            const file = event.target.files; // Zoberie prvý vybraný súbor
+            const files = event.target.files;
             if (files.length === 0) {
                 alert("Prosím, vyberte aspoň jeden súbor.");
                 return;
             }
-
+        
             let successCount = 0;
             const bucketName = "wedding-photos";
-
-            for (const file of files) {
-                const fileName = `wedding_photos/${Date.now()}_${file.name}`; // Unikátny názov
-
+            const timestamp = Date.now(); // Uloženie spoločného timestampu pre všetky súbory
+        
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const fileName = `wedding_photos/${timestamp}_${i}_${file.name}`; // Pridanie indexu, aby bol názov unikátny
+        
                 const { error } = await supabase.storage.from(bucketName).upload(fileName, file, {
                     cacheControl: "3600",
                     upsert: false
                 });
-
+        
                 if (!error) {
                     successCount++;
                 }
             }
-
+        
             alert(`Úspešne nahraných ${successCount} fotiek!`);
         }
         
