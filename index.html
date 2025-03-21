@@ -17,46 +17,49 @@
     <input type="text" id="nameInput" placeholder="Zadaj meno">
     <button onclick="findTable()">Nájsť číslo stola</button>
 
-    <h3 id="result"></h3>
-    <label id="tableLabel" style="font-size: 18px; font-weight: bold; color: pink;"></label>
+    <h3 id="result">Result</h3>
+    <label id="tableLabel" style="font-size: 18px; font-weight: bold; color: rgb(0, 0, 0);">-</label>
+
 
     <script>
-        const supabaseUrl = "https://kedxejzmxdpnjgekhqiz.supabase.co"; // Sem vlož URL Supabase projektu
-        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlZHhlanpteGRwbmpnZWtocWl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0NzI5NDYsImV4cCI6MjA1ODA0ODk0Nn0.NzKYXqu-ViNHrmRWXS_6uAA_2thzYnEe9sksP1qIBbY"; // Sem vlož ANON key z API sekcie
+        document.addEventListener("DOMContentLoaded", function () {
+            const supabaseUrl = "https://kedxejzmxdpnjgekhqiz.supabase.co";
+            const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlZHhlanpteGRwbmpnZWtocWl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0NzI5NDYsImV4cCI6MjA1ODA0ODk0Nn0.NzKYXqu-ViNHrmRWXS_6uAA_2thzYnEe9sksP1qIBbY";
 
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+            const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        async function findTable() {
-            let name = document.getElementById("nameInput").value.trim();
-            let resultElement = document.getElementById("result");
-            let tableLabel = document.getelementById("tableLabel");
+            window.findTable = async function () {
+                let name = document.getElementById("nameInput").value.trim();
+                let resultElement = document.getElementById("result");
+                let tableLabel = document.getElementById("tableLabel");
 
-            resultElement.innerText = "";
-            tableLabel.innerText = "";
-            
-            if (!name) {
-                resultElement.innerText = "Zadajte svoje meno!";
-                return;
-            }
+                resultElement.innerText = "";
+                tableLabel.innerText = "";
 
-            let { data, error } = await supabase
-                .from("guests_sql")
-                .select("table_number")
-                .ilike("name", name);  // Hľadanie mena bez rozlíšenia veľkosti písmen
+                if (!name) {
+                    resultElement.innerText = "Zadajte svoje meno!";
+                    return;
+                }
 
-            if (error) {
-                resultElement.innerText = "Chyba pri načítaní údajov.";
-                console.error("Supabase error:", error);
-                return;
-            } 
+                let { data, error } = await supabase
+                    .from("guests_sql")
+                    .select("table_number")
+                    .ilike("name", name);
 
-            if (!data.length) {
-                resultElement.innerText = "Meno nenájdené.";
-            } else {
-                resultElement.innerText = "Vaše číslo stola:";
-                tableLabel.innerText = "Stôl č. ${data[0].table_number}";
-            }
-        }
+                if (error) {
+                    resultElement.innerText = "Chyba pri načítaní údajov.";
+                    console.error("Supabase error:", error);
+                    return;
+                }
+
+                if (!data.length) {
+                    resultElement.innerText = "Meno nenájdené.";
+                } else {
+                    resultElement.innerText = "Vaše číslo stola:";
+                    tableLabel.innerText = `Stôl č. ${data[0].table_number}`;
+                }
+            };
+        });
     </script>
 </body>
 </html>
