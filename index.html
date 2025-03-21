@@ -100,52 +100,6 @@
             document.getElementById("nameInput").addEventListener("input", searchGuests);
         });
 
-        async function searchGuests() {
-            // Ak ešte Supabase nie je inicializovaný, počkáme
-            if (!supabase) {
-                console.error("Supabase ešte nie je inicializovaný!");
-                return;
-            }
-
-            let name = document.getElementById("nameInput").value.trim();
-            let suggestionsBox = document.getElementById("suggestions");
-
-            if (name.length < 1) {
-                suggestionsBox.style.display = "none";
-                return;
-            }
-
-            let { data, error } = await supabase
-                .from("guests_sql")
-                .select("name, surname, table_number")
-                .or(`name.ilike.${name}%,surname.ilike.${name}%`);
-
-            if (error || !data.length) {
-                suggestionsBox.style.display = "none";
-                return;
-            }
-            suggestionsBox.innerHTML = "";
-            data.forEach(guest => {
-                let div = document.createElement("div");
-                div.innerText = `${guest.name} ${guest.surname}, Stôl č. ${guest.table_number}`;
-                div.onclick = function () {
-                    document.getElementById("nameInput").value = guest.name;
-                    document.getElementById("result").innerText = `Vaše číslo stola je: ${guest.table_number}`;
-                    suggestionsBox.style.display = "none";
-                };
-                suggestionsBox.appendChild(div);
-            });
-            suggestionsBox.style.display = "block";
-        }
-
-        document.addEventListener("click", function(event) {
-            let suggestionsBox = document.getElementById("suggestions");
-            let inputBox = document.getElementById("nameInput");
-            if (event.target !== inputBox && !suggestionsBox.contains(event.target)) {
-                suggestionsBox.style.display = "none";
-            }
-        });
-
         document.addEventListener("DOMContentLoaded", function () {
             const weddingDate = new Date("2025-07-12T15:30:00");
             function updateCountdown() {
