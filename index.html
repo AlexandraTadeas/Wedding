@@ -84,7 +84,7 @@
 
         <div class="upload-box" onclick="document.getElementById('fileUpload').click()">
             <p>Budeme radi ak sa s nami podelite o svoje momenty z našej svadby</p>
-            <input type="file" id="fileUpload" multiple>
+            <input type="file" id="fileUpload" multiple onchange="uploadFile(event)">
         </div>
     </div>
 
@@ -112,6 +112,26 @@
             updateCountdown();
             setInterval(updateCountdown, 86400000);
         });
+
+        async function uploadFile(event) {
+            const file = event.target.files[0]; // Zoberie prvý vybraný súbor
+            if (!file) return;
+
+            const fileName = `wedding_photos/${Date.now()}_${file.name}`; // Unikátny názov súboru
+            
+            // Nahraj súbor do Supabase Storage
+            const { data, error } = await supabase.storage.from("wedding-photos").upload(fileName, file, {
+                cacheControl: "3600",
+                upsert: false
+            });
+
+            if (error) {
+                alert("Chyba pri nahrávaní fotky: " + error.message);
+            } else {
+                alert("Fotka bola úspešne nahraná!");
+            }
+        }
+        
     </script>
 </body>
 </html>
