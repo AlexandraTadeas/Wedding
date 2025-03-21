@@ -114,22 +114,29 @@
         });
 
         async function uploadFile(event) {
-            const file = event.target.files[0]; // Zoberie prvý vybraný súbor
-            if (!file) return;
-
-            const fileName = `wedding_photos/${Date.now()}_${file.name}`; // Unikátny názov súboru
-            
-            // Nahraj súbor do Supabase Storage
-            const { data, error } = await supabase.storage.from("wedding-photos").upload(fileName, file, {
-                cacheControl: "3600",
-                upsert: false
-            });
-
-            if (error) {
-                alert("Chyba pri nahrávaní fotky: " + error.message);
-            } else {
-                alert("Fotka bola úspešne nahraná!");
+            const file = event.target.files; // Zoberie prvý vybraný súbor
+            if (files.length === 0) {
+                alert("Prosím, vyberte aspoň jeden súbor.");
+                return;
             }
+
+            let successCount = 0;
+            const bucketName = "wedding-photos";
+
+            for (const file of files) {
+                const fileName = `wedding_photos/${Date.now()}_${file.name}`; // Unikátny názov
+
+                const { error } = await supabase.storage.from(bucketName).upload(fileName, file, {
+                    cacheControl: "3600",
+                    upsert: false
+                });
+
+                if (!error) {
+                    successCount++;
+                }
+            }
+
+            alert(`Úspešne nahraných ${successCount} fotiek!`);
         }
         
     </script>
