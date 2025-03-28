@@ -82,6 +82,34 @@ input, select, textarea {
 		-ms-overflow-style: scrollbar;
 	}
 
+	@media (max-width: 1024px) {
+		body {
+			background-color: var(--desktop-bg-color);
+			color: var(--desktop-text-color);
+		}
+		
+		header, footer {
+			background-color: var(--desktop-header-footer-color);
+		}
+		
+		a {
+			color: var(--desktop-link-color);
+		}
+	}
+	
+	/* Optimalizácia obrázkov pre menšie obrazovky */
+	img {
+		max-width: 100%;
+		height: auto;
+		object-fit: contain;
+	}
+	
+	@media (max-width: 768px) {
+		img {
+			max-width: 90%;
+		}
+	}
+
 	@media screen and (max-width: 480px) {
 
 		html, body {
