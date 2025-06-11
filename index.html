@@ -29,7 +29,7 @@
 							</ul>
 						</header>
 						<div class="content">
-							<span class="image fill" data-position="center"><img src="images/fulls/svadba.jpg" alt="" /></span>
+							<span class="image fill" data-position="fill"><img src="images/fulls/svadba.jpg" alt="" /></span>
 						</div>
 					</section>
 
@@ -60,112 +60,68 @@
 						<header>
 							<h2>Niečo z nášho života</h2>
 							<ul class="actions">
-								<li><a href="#third" class="arrow scrolly"><span class="label">Next</span></a></li>
+								<li><a href="#outro" class="arrow scrolly"><span class="label">Next</span></a></li>
 							</ul>
 						</header>
-						<div class="content">
-							<!-- Section -->
-								<section>
-									<div class="content">
-										<div class="gallery">
-											<a href="images/gallery/fulls/01.jpg" class="landscape"><img src="images/gallery/thumbs/01.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/02.jpg"><img src="images/gallery/thumbs/02.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/03.jpg"><img src="images/gallery/thumbs/03.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/04.jpg" class="landscape"><img src="images/gallery/thumbs/04.jpg" alt="" /></a>
-										</div>
-									</div>
-								</section>
+ 						<div class="content">
+							<div class="gallery-wrapper">
+								<div class="gallery">
+									<a href="images/gallery/fulls/01.jpg" class="landscape"><img src="images/gallery/thumbs/01.jpg" alt="" /></a>
+									<a href="images/gallery/fulls/02.jpg"><img src="images/gallery/thumbs/02.jpg" alt="" /></a>
+									<a href="images/gallery/fulls/03.jpg"><img src="images/gallery/thumbs/03.jpg" alt="" /></a>
+									<a href="images/gallery/fulls/04.jpg" class="landscape"><img src="images/gallery/thumbs/04.jpg" alt="" /></a>
+								</div>
 
-							<!-- Section -->
-								<section id="third">
-									<div class="content">
-										<div class="gallery">
-											<a href="images/gallery/fulls/05.jpg" class="landscape"><img src="images/gallery/thumbs/05.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/06.jpg"><img src="images/gallery/thumbs/06.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/07.jpg"><img src="images/gallery/thumbs/07.jpg" alt="" /></a>
-										</div>
-									</div>
-								</section>
+								<div class="gallery">
+									<a href="images/gallery/fulls/05.jpg" class="landscape"><img src="images/gallery/thumbs/05.jpg" alt="" /></a>
+									<a href="images/gallery/fulls/06.jpg"><img src="images/gallery/thumbs/06.jpg" alt="" /></a>
+									<a href="images/gallery/fulls/07.jpg"><img src="images/gallery/thumbs/07.jpg" alt="" /></a>
+								</div>
 
-							<!-- Section -->
-								<section>
-									<div class="content">
-										<div class="gallery">
-											<a href="images/gallery/fulls/08.jpg" class="portrait"><img src="images/gallery/thumbs/08.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/09.jpg" class="portrait"><img src="images/gallery/thumbs/09.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/10.jpg" class="landscape"><img src="images/gallery/thumbs/10.jpg" alt="" /></a>
-										</div>
-									</div>
-								</section>
-
+								<div class="gallery">
+									<a href="images/gallery/fulls/08.jpg" class="portrait"><img src="images/gallery/thumbs/08.jpg" alt="" /></a>
+									<a href="images/gallery/fulls/09.jpg" class="portrait"><img src="images/gallery/thumbs/09.jpg" alt="" /></a>
+									<a href="images/gallery/fulls/10.jpg" class="landscape"><img src="images/gallery/thumbs/10.jpg" alt="" /></a>
+								</div>
+							</div>
 						</div>
 					</section>
 
 				<!-- Section -->
-					<section id="third">
+					<section id="outro">
 						<header>
 							<h2>Pridaj svoje fotky alebo videá</h2>
 						</header>
 						<div class="content">
 							<p><strong>Budeme radi, ak sa s nami podelíte o svoje spomienky, radosti z našej svadby. Preto ak máte nejaké fotky alebo videá, o ktoré by ste sa radi s nami podelili kľudne ich pridajte nižšie</strong></p>
 							<form>
-								<div class="fields">
-									<div class="field half">
-										<input type="text" name="name" id="name" placeholder="Name" />
-									</div>
-									<div class="field half">
-										<input type="email" name="email" id="email" placeholder="Email" />
-									</div>
-									<div class="field">
-										<textarea name="message" id="message" placeholder="Message" rows="7"></textarea>
-									</div>
+								<div class="upload-box" onclick="document.getElementById('fileUpload').click()">
+									SVOJE FOTKY PRIDAJ KLIKNUTÍM TU.
+									<input type="file" id="fileUpload" multiple onchange="uploadFile(event)">
 								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" class="button primary" /></li>
-								</ul>
 							</form>
 						</div>
-						<footer>
-							<ul class="items">
-								<li>
-									<h3>Email</h3>
-									<a href="#">information@untitled.ext</a>
-								</li>
-								<li>
-									<h3>Phone</h3>
-									<a href="#">(000) 000-0000</a>
-								</li>
-								<li>
-									<h3>Address</h3>
-									<span>1234 Somewhere Road, Nashville, TN 00000</span>
-								</li>
-								<li>
-									<h3>Elsewhere</h3>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-										<li><a href="#" class="icon brands fa-codepen"><span class="label">Codepen</span></a></li>
-									</ul>
-								</li>
-							</ul>
-						</footer>
 					</section>
 
 				<!-- Copyright -->
-					<div class="copyright">&copy; Untitled. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
+					<div class="copyright">&copy; Alexandra&Tadeáš, 2025</div>
 
 			</div>
 
 		<!-- Scripts -->
+			<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				const SUPABASE_URL = "https://kedxejzmxdpnjgekhqiz.supabase.co";
+				const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlZHhlanpteGRwbmpnZWtocWl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0NzI5NDYsImV4cCI6MjA1ODA0ODk0Nn0.NzKYXqu-ViNHrmRWXS_6uAA_2thzYnEe9sksP1qIBbY";
+			
+				const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+			</script>
 			<script>
 				document.addEventListener("DOMContentLoaded", function () {
 					const weddingDate = new Date("2025-07-12T15:30:00");
@@ -178,8 +134,44 @@
 					updateCountdown();
 					setInterval(updateCountdown, 86400000);
 				});
-			</script>
 
+				async function uploadFile(event) {
+					const files = event.target.files;
+					if (files.length === 0) {
+						alert('Prosím, vyberte aspoň jeden súbor.');
+                	return;
+				}
+        
+            	let successCount = 0;
+            	const bucketName = "wedding-photos";
+				const folderName = "wedding_photos";
+            	const timestamp = Date.now();  
 
+				if (typeof supabase === "undefined") {
+        			console.error("Supabase is not initialized.");
+        			return;
+    			}
+        
+            	for (let i = 0; i < files.length; i++ ) {
+                	const file = files[i];
+					const filePath = `${folderName}/wedding_${timestamp}_${i}_${file.name}`;
+        
+                	const { error } = await supabase.storage
+						.from(bucketName)
+						.upload(filePath, file, {
+							cacheControl: "3600",
+							upsert: false
+						});
+        
+                	if (!error) {
+                    	successCount++;
+                	} else {
+						console.error("Upload error:", error.message);
+					}
+            	}
+        
+            	alert(`Úspešne nahraných ${successCount} fotiek!`);
+        	}
+		</script>
 	</body>
 </html>
