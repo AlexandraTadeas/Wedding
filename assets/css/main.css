@@ -70,6 +70,25 @@ input, select, textarea {
 	appearance: none;
 }
 
+.upload-box {
+	width: 300px;
+	padding: 20px;
+	text-align: center;
+	border: #4b6f33;
+	border-style: ridge;
+	cursor: pointer;
+	background-color: #fff;
+	margin: 20px auto;
+	color: #4b6f33;
+	font-size: 16px;
+}
+.upload-boxhover {
+	background-color: #f0e4d7;
+}
+.upload-box input {
+	display: none;
+}
+
 /* Basic */
 
 	@-ms-viewport {
